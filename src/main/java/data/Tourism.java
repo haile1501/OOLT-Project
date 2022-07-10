@@ -10,6 +10,8 @@ public class Tourism {
     private final String subject;
     private final String name;
 
+    protected String dataSource;
+
     public Tourism() {
         this.commentFilter = "FILTER(langMatches(lang(?comment), \"en\"))";
         this.labelFilter = "FILTER(langMatches(lang(?label), \"en\"))";
@@ -43,6 +45,10 @@ public class Tourism {
         return name;
     }
 
+    public String getDataSource() {
+        return dataSource;
+    }
+
     public String getPREFIXES() {
         return """
                 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -56,7 +62,7 @@ public class Tourism {
         return this.getComment() +
                this.getName() +
                this.getLabel() +
-               this.getSubject();
+               this.getSubject() + "\n";
     }
 
     public String createWhereBody() {
@@ -65,7 +71,8 @@ public class Tourism {
                 this.getSubject() +
                 this.getLabelFilter() +
                 this.getCommentFilter() +
-                Utils.createOptionalStatement(this.getName());
+                Utils.createOptionalStatement(this.getName()) +
+                this.getDataSource() + "\n";
     }
 
     public String createQuery() {
