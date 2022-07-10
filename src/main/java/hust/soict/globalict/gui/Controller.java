@@ -4,14 +4,12 @@ import hust.soict.globalict.main.dataprocessing.DataFetcher;
 import hust.soict.globalict.utils.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.*;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
 
 import javax.swing.JOptionPane;
 import java.io.File;
@@ -22,6 +20,8 @@ import java.util.Scanner;
 
 public class Controller implements Initializable{
 
+    @FXML
+    private AnchorPane anchorPane;
     @FXML
     private ChoiceBox<String> topicBox;
     @FXML
@@ -35,6 +35,11 @@ public class Controller implements Initializable{
 
     @FXML
     private TextArea previewTextArea;
+    @FXML
+    private Button btnBrowse;
+    @FXML
+    private Label filePathLabel;
+    private String filePath = "src/main/resources/storage/";
 
     private final String[] topics = {"Buildings and Structures", "Natural Attractions", "Culture", "People"};
     private final String[] buildingsAndStructures = {"Airport", "Amusement park", "Bridge", "Church", "Dam", "Hotel And Resort", "Mausoleum", "Monument", "Pagoda", "Museum"};
@@ -50,6 +55,8 @@ public class Controller implements Initializable{
         topicBox.setOnAction(this::setCategory);
         categoryBox.setValue("Choose category");
         btnQuery.setOnAction(this::executeQuery);
+        btnBrowse.setOnAction(this::browseFolder);
+        filePathLabel.setText("Path: " + filePath);
     }
 
     public void setCategory(ActionEvent actionEvent) {
@@ -77,10 +84,10 @@ public class Controller implements Initializable{
         if (fileName.length() == 0) {
             fileName = Utils.createFileName(category.toLowerCase());
             fileNameField.setText(fileName);
-            DataFetcher dataFetcher = new DataFetcher(category, fileName);
+            DataFetcher dataFetcher = new DataFetcher(category, filePath, fileName);
             dataFetcher.fetch();
         } else if (Utils.validateFileName(fileName)) {
-            DataFetcher dataFetcher = new DataFetcher(category, fileName);
+            DataFetcher dataFetcher = new DataFetcher(category, filePath, fileName);
             dataFetcher.fetch();
         } else {
             JOptionPane.showMessageDialog(null, "Invalid file name.");
@@ -89,13 +96,25 @@ public class Controller implements Initializable{
 
         previewTextArea.clear();
         try {
-            Scanner input = new Scanner(new File("src/main/resources/storage/" + fileName + ".ttl"));
+            Scanner input = new Scanner(new File(filePath + fileName + ".ttl"));
             while (input.hasNext()) {
                 previewTextArea.appendText(input.nextLine() + '\n');
             }
             input.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void browseFolder(ActionEvent actionEvent) {
+        final DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setInitialDirectory(new File ("src/main/resources/storage/"));
+        Stage stage = (Stage) anchorPane.getScene().getWindow();
+        File file = directoryChooser.showDialog(stage);
+
+        if (file != null) {
+            filePath = file.getAbsolutePath() + "/";
+            filePathLabel.setText("Path: " + filePath);
         }
     }
 }

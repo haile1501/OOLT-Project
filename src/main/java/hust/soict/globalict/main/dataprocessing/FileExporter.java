@@ -8,9 +8,9 @@ import java.io.IOException;
 
 public class FileExporter {
 
-    public void exportFile(Model model, String fileName) {
+    public void exportFile(Model model, String filePath, String fileName) {
         try {
-            File file = new File("src/main/resources/storage", fileName + ".ttl");
+            File file = new File(filePath, fileName + ".ttl");
             model.write(new FileWriter(file), "TTL");
         } catch (IOException e) {
             e.printStackTrace();

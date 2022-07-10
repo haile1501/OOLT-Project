@@ -13,10 +13,12 @@ import org.apache.jena.query.QueryFactory;
 public class DataFetcher {
     private final String category;
     private final String fileName;
+    private final String filePath;
 
-    public DataFetcher(String category, String fileName) {
+    public DataFetcher(String category, String filePath, String fileName) {
         this.category = category;
         this.fileName = fileName;
+        this.filePath = filePath;
     }
 
     private String createQueryString() {
@@ -62,7 +64,7 @@ public class DataFetcher {
 
         try (QueryExecution queryExecution = QueryExecution.service("http://dbpedia.org/sparql").query(query).build()) {
             FileExporter fileExporter = new FileExporter();
-            fileExporter.exportFile(queryExecution.execConstruct(), fileName);
+            fileExporter.exportFile(queryExecution.execConstruct(), filePath, fileName);
         } catch (Exception e) {
             e.printStackTrace();
         }
