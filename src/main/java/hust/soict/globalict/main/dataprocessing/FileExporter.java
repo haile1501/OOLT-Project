@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class FileExporter {
+public class FileExporter implements FileExportable{
 
     public void exportFile(Model model, String filePath, String fileName) {
         try {
