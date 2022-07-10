@@ -1,6 +1,53 @@
 package data;
 
+import utils.Utils;
+
 public class Tourism {
+    private final String labelFilter;
+    private final String commentFilter;
+    private final String label;
+    private final String comment;
+    private final String subject;
+    private final String name;
+    protected String dataResource;
+
+
+    public String getLabelFilter() {
+        return labelFilter;
+    }
+
+    public String getCommentFilter() {
+        return commentFilter;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDataResource() {
+        return dataResource;
+    }
+
+    public Tourism() {
+        this.commentFilter = "FILTER(langMatches(lang(?comment), \"en\"))";
+        this.labelFilter = "FILTER(langMatches(lang(?label), \"en\"))";
+        this.subject = "?data dct:subject ?subject.";
+        this.label = "?data rdfs:label ?label.";
+        this.comment = "?data rdfs:comment ?comment.";
+        this.name = "?data foaf:name ?name.";
+    }
 
     public String getPREFIXES() {
         return """                
@@ -12,28 +59,25 @@ public class Tourism {
                 """;
     }
 
-    public String getConstructPart() {
-        return """
-                CONSTRUCT {
-                ?data rdfs:label ?label.                
-                ?data rdfs:comment ?comment.
-                ?data dct:subject ?subject.
-                ?data foaf:name ?name.
-                """;
+    public String createConstructBody() {
+        return this.getComment() +
+                this.getName() +
+                this.getLabel() +
+                this.getSubject();
     }
 
-    public String getWherePart() {
-        return """
-                WHERE {
-                ?data rdfs:label ?label.
-                FILTER(langMatches(lang(?label), "en"))                
-                ?data rdfs:comment ?comment.
-                FILTER(langMatches(lang(?comment), "en"))
-                OPTIONAL { ?data foaf:name ?name }
-                ?data dct:subject ?subject.
-                """;
+    public String createWhereBody() {
+        return  this.getComment()
+                +this.getLabel()
+                +this.getSubject()
+                +this.getLabelFilter()
+                +this.getCommentFilter()
+                + Utils.createOptionalStatement(this.getName())
+                +this.getDataResource();
     }
 
-
+    public String createQuery() {
+        return getPREFIXES() + "CONSTRUCT {" + createConstructBody() + "}" + "WHERE {" + createWhereBody() + "}";
+    }
 
 }

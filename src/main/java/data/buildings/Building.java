@@ -13,21 +13,21 @@ public class Building extends Tourism {
                 """;
     }
 
-    public String getConstructPart() {
-        return super.getConstructPart() +
-                """
-                ?data georss:point ?point.
-                ?data dbp:location ?location.
-                ?data dbp:province ?province.
-                """;
-    }
-
-    public String getWherePart() {
-        return super.getWherePart() +
-                """
-                OPTIONAL { ?data georss:point ?point }.
-                OPTIONAL { ?data dbp:location ?location }.
-                OPTIONAL { ?data dbp:province ?province }.
-                """;
-    }
+//    public String getConstructPart() {
+//        return super.getConstructPart() +
+//                """
+//                ?data georss:point ?point.
+//                ?data dbp:location ?location.
+//                ?data dbp:province ?province.
+//                """;
+//    }
+//
+//    public String getWherePart() {
+//        return super.getWherePart() +
+//                """
+//                OPTIONAL { ?data georss:point ?point }.
+//                OPTIONAL { ?data dbp:location ?location }.
+//                OPTIONAL { ?data dbp:province ?province }.
+//                """;
+//    }
 }
