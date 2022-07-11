@@ -1,4 +1,4 @@
-package hust.soict.globalict.gui;
+package hust.soict.globalict.gui.view;
 
 
 import javafx.fxml.FXMLLoader;

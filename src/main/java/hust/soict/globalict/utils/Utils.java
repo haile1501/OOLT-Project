@@ -20,8 +20,4 @@ public class Utils {
         }
         return isValid;
     }
-
-    public static String createFileName(String category) {
-        return category.replaceAll("\\s+","");
-    }
 }

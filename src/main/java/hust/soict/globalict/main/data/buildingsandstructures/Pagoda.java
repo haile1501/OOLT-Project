@@ -1,7 +1,4 @@
 package hust.soict.globalict.main.data.buildingsandstructures;
-
-
-
 public class Pagoda extends BuildingAndStructure {
     public Pagoda() {
         super();

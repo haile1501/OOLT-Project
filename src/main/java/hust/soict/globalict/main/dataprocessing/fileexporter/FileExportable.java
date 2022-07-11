@@ -1,4 +1,4 @@
-package hust.soict.globalict.main.dataprocessing;
+package hust.soict.globalict.main.dataprocessing.fileexporter;
 
 import org.apache.jena.rdf.model.Model;
 

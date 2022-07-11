@@ -65,6 +65,7 @@ public class Tourism {
                this.getSubject() + "\n";
     }
 
+
     public String createWhereBody() {
         return this.getComment() +
                 this.getLabel() +
