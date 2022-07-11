@@ -3,20 +3,31 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hust.soict.globalict.gui.Controller">
-      <Button fx:id="btnQuery" layoutX="797.0" layoutY="547.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="215.0" style="-fx-cursor: pointer;" text="QUERY" />
+<AnchorPane fx:id="anchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hust.soict.globalict.gui.controller.Controller">
+      <Button fx:id="btnQuery" layoutX="797.0" layoutY="550.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="215.0" style="-fx-cursor: pointer;" text="QUERY" />
       <ChoiceBox fx:id="topicBox" layoutX="764.0" layoutY="121.0" prefHeight="40.0" prefWidth="280.0" style="font-size: 14;" />
-      <ChoiceBox fx:id="categoryBox" layoutX="765.0" layoutY="239.0" prefHeight="40.0" prefWidth="280.0" style="font-size: 14;" />
+      <ChoiceBox fx:id="categoryBox" layoutX="764.0" layoutY="222.0" prefHeight="40.0" prefWidth="280.0" style="font-size: 14;" />
       <Label layoutX="71.0" layoutY="40.0" prefHeight="18.0" prefWidth="156.0" style="-fx-font-size: 24; -fx-font-weight: 900;" text="Preview" />
       <Label layoutX="765.0" layoutY="86.0" prefHeight="23.0" prefWidth="81.0" style="-fx-font-size: 18;" text="Topic" />
-      <Label layoutX="770.0" layoutY="205.0" style="-fx-font-size: 18;" text="Category" />
-      <TextField fx:id="fileNameField" layoutX="765.0" layoutY="377.0" prefHeight="40.0" prefWidth="280.0" style="-fx-border-width: 3px; -fx-font-size: 14; -fx-background-color: #d6d6d6;" />
-      <Label layoutX="767.0" layoutY="327.0" style="-fx-font-size: 18;" text="File name (.ttl)" />
+      <Label layoutX="764.0" layoutY="190.0" style="-fx-font-size: 18;" text="Category" />
+      <TextField fx:id="fileNameField" layoutX="764.0" layoutY="324.0" prefHeight="40.0" prefWidth="280.0" style="-fx-border-width: 3px; -fx-font-size: 14; -fx-background-color: #d6d6d6;" />
+      <Label layoutX="761.0" layoutY="293.0" style="-fx-font-size: 18;" text="File name" />
    <TextArea fx:id="previewTextArea" editable="false" layoutX="62.0" layoutY="87.0" prefHeight="580.0" prefWidth="624.0" style="-fx-background-color: gray; -fx-font-size: 14;" />
-   <Button fx:id="btnBrowse" layoutX="1067.0" layoutY="377.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="106.0" style="-fx-font-size: 14;" text="Browse" />
-   <Label fx:id="filePathLabel" layoutX="764.0" layoutY="429.0" prefHeight="23.0" prefWidth="327.0" style="-fx-font-size: 14;" />
+   <Button fx:id="btnBrowse" layoutX="1064.0" layoutY="324.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="106.0" style="-fx-font-size: 14;" text="Browse" />
+   <Label fx:id="filePathLabel" layoutX="765.0" layoutY="377.0" prefHeight="23.0" prefWidth="327.0" style="-fx-font-size: 14;" />
+   <Label fx:id="currentFileDisplay" layoutX="204.0" layoutY="44.0" prefHeight="23.0" prefWidth="247.0" style="-fx-font-size: 16;" />
+   <Label layoutX="766.0" layoutY="436.0" style="-fx-font-size: 18;" text="Format" />
+   <RadioButton fx:id="radio1" layoutX="859.0" layoutY="438.0" mnemonicParsing="false" selected="true" style="-fx-font-size: 15;" styleClass="radio" text="Turtle (.ttl)">
+      <toggleGroup>
+         <ToggleGroup fx:id="format" />
+      </toggleGroup></RadioButton>
+   <RadioButton fx:id="radio2" layoutX="1015.0" layoutY="438.0" mnemonicParsing="false" style="-fx-font-size: 15;" styleClass="radio" text="JSON-LD (.jsonld)" toggleGroup="$format" />
+   <RadioButton fx:id="radio3" layoutX="859.0" layoutY="474.0" mnemonicParsing="false" style="-fx-font-size: 15;" styleClass="radio" text="N-Triples (.nt)" toggleGroup="$format" />
+   <RadioButton fx:id="radio4" layoutX="1015.0" layoutY="474.0" mnemonicParsing="false" style="-fx-font-size: 15;" styleClass="radio" text="RDF/XML (.rdf)" toggleGroup="$format" />
 </AnchorPane>
