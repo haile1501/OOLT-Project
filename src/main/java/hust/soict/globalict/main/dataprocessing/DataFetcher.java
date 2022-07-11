@@ -29,7 +29,7 @@ public class DataFetcher {
             case "Bridge" -> queryString = new Bridge().createQuery();
             case "Church" -> queryString = new Church().createQuery();
             case "Dam" -> queryString = new Dam().createQuery();
-            case "Hotel and resort" -> queryString = new HotelAndResort().createQuery();
+            case "Hotel and Resort" -> queryString = new HotelAndResort().createQuery();
             case "Mausoleum" -> queryString = new Mausoleum().createQuery();
             case "Monument" -> queryString = new Monument().createQuery();
             case "Museum" -> queryString = new Museum().createQuery();
@@ -47,6 +47,8 @@ public class DataFetcher {
             case "Island" -> queryString = new Island().createQuery();
             case "Lake" -> queryString = new Lake().createQuery();
             case "National park" -> queryString = new NationalPark().createQuery();
+            case "Mountain" -> queryString = new Mountain().createQuery();
+            case "River" -> queryString = new River().createQuery();
             case "Pass" -> queryString = new Pass().createQuery();
             case "Astronaut" -> queryString = new Astronaut().createQuery();
             case "Businessman" -> queryString = new Businessman().createQuery();

@@ -42,7 +42,7 @@ public class Controller implements Initializable{
     private String filePath = "src/main/resources/storage/";
 
     private final String[] topics = {"Buildings and Structures", "Natural Attractions", "Culture", "People"};
-    private final String[] buildingsAndStructures = {"Airport", "Amusement park", "Bridge", "Church", "Dam", "Hotel And Resort", "Mausoleum", "Monument", "Pagoda", "Museum"};
+    private final String[] buildingsAndStructures = {"Airport", "Amusement park", "Bridge", "Church", "Dam", "Hotel and Resort", "Mausoleum", "Monument", "Pagoda", "Museum"};
     private final String[] culture = {"Art", "Costume", "Ethnic group", "Festival", "Food", "History", "Religion", "Traditional game"};
     private final String[] naturalAttractions = {"Beach", "Cave", "Island", "Lake", "Mountain", "National park", "Pass", "River"};
 
